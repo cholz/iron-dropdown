@@ -471,8 +471,8 @@ method is called on the element.
             this._fitInfo.inlineStyle[this.verticalAlign] =
               this.style[this.verticalAlign];
 
-              hAlignDelete = this._localeHorizontalAlign === 'left' ? 'right' : 'left';
-              vAlignDelete = this.verticalAlign === 'top' ? 'bottom' : 'top';
+              var hAlignDelete = this._localeHorizontalAlign === 'left' ? 'right' : 'left';
+              var vAlignDelete = this.verticalAlign === 'top' ? 'bottom' : 'top';
 
               delete this._fitInfo.inlineStyle[hAlignDelete];
               delete this._fitInfo.inlineStyle[vAlignDelete]
