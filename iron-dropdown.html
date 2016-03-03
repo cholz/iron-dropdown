@@ -454,28 +454,30 @@ method is called on the element.
           if (!this.positionTarget) {
             return;
           }
+          
+          var hAlignDelete = this._localeHorizontalAlign === 'left' ? 'right' : 'left';
+          var vAlignDelete = this.verticalAlign === 'top' ? 'bottom' : 'top';
 
+          delete this.style[hAlignDelete];
           this.style[this._localeHorizontalAlign] =
-            this._horizontalAlignTargetValue + 'px';
+             this._horizontalAlignTargetValue + 'px';
 
+          delete this.style[vAlignDelete];
           this.style[this.verticalAlign] =
             this._verticalAlignTargetValue + 'px';
+          
 
           // NOTE(cdata): We re-memoize inline styles here, otherwise
           // calling `refit` from `IronFitBehavior` will reset inline styles
           // to whatever they were when the dropdown first opened.
           if (this._fitInfo) {
+            delete this._fitInfo.inlineStyle[hAlignDelete];
             this._fitInfo.inlineStyle[this.horizontalAlign] =
               this.style[this.horizontalAlign];
 
+            delete this._fitInfo.inlineStyle[vAlignDelete]
             this._fitInfo.inlineStyle[this.verticalAlign] =
               this.style[this.verticalAlign];
-
-              var hAlignDelete = this._localeHorizontalAlign === 'left' ? 'right' : 'left';
-              var vAlignDelete = this.verticalAlign === 'top' ? 'bottom' : 'top';
-
-              delete this._fitInfo.inlineStyle[hAlignDelete];
-              delete this._fitInfo.inlineStyle[vAlignDelete]
           }
         },
 
